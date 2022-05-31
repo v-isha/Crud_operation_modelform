@@ -1,0 +1,67 @@
+{% extends 'basee.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        <h3 class="text-center alert alert-info">ADD USERS</h3>
+        <form action="" method="POST" novalidate>
+            {% csrf_token %}
+            {{form.non_field_errors}}
+            {% for field  in form  %}
+            <div>
+            {{field.label_tag}} <span class="errorlist">{{field.errors|striptags}}</span>{{field}}
+            </div>
+            {% endfor %}
+            <input type="submit" class="btn btn-primary" value="ADD">   
+        </form>
+    </div>
+    <div class="col-sm-7 offset-1">
+            <h3 class="text-center alert alert-info">USER DATA INFORMATION</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if cus %}
+                    {% for cus  in cus %}
+                    <tr>
+                        <td>{{cus.customer_id}}</td>
+                        <td>{{cus.name}}</td>
+                        <td>{{cus.email}}</td>
+                        <td>{{cus.password}}</td>
+                        <td>
+                            <form action="{% url 'userupdate' cus.customer_id %}" method="" class="d-inline">
+                                
+                                <button type="submit" class="btn btn-info" value=>EDIT</button>
+                              </form>
+                            <form action="{% url 'userdel' cus.customer_id  %}" method="POST" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger" value=>DELETE</button>
+                            </form>
+                        
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    {% endif %}
+                </tbody>
+
+
+            </table>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+{% endblock content %}

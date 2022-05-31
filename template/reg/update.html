@@ -1,0 +1,23 @@
+{% extends 'basee.html' %}
+{% block content %}
+<div class="row">
+<div class="col sm-8">
+    <h3 class="text-center alert alert-info">UPDATE USER DATA</h3>
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}
+        <div>
+        {{form.as_p}}
+        </div>
+        
+        <input type="submit" class="btn btn-success" value="UPDATE">
+        <a href={% url 'index' %} class="btn btn-info">BACK</a>   
+    </form>
+</div>
+</div>
+
+
+
+
+
+
+{% endblock content %}
