@@ -11,7 +11,8 @@
             {{field.label_tag}} <span class="errorlist">{{field.errors|striptags}}</span>{{field}}
             </div>
             {% endfor %}
-            <input type="submit" class="btn btn-primary" value="ADD">   
+            <input type="submit" class="btn btn-primary" value="ADD">
+               
         </form>
     </div>
     <div class="col-sm-7 offset-1">
@@ -53,6 +54,7 @@
 
 
             </table>
+            {% comment %} <a href="{% url 'showdata' %}" class="btn btn-primary ml-5">SHOWDATA</a> {% endcomment %}
     </div>
 
 

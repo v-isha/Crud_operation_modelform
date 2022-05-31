@@ -11,6 +11,7 @@ def land(request):
 
 # this function will save and show data
 def index(request):
+    
     if request.method =="POST":
        cr=customerregistration(request.POST)
        if cr.is_valid():
@@ -22,9 +23,20 @@ def index(request):
          cus.save()
          return HttpResponseRedirect('/index/')
     else:
+        
         cr=customerregistration()
-        crd = customer.objects.all()
-    return render(request,"reg/index.html",{'form':cr,'cus':crd})
+        getdata = customer.objects.all()
+
+       
+    return render(request,"reg/index.html",{'form':cr ,"cus":getdata})
+    # return render(request,"reg/index.html",{'form':cr,'cus':crd})
+
+
+# data display
+# def showdata(request):
+#       crd = customer.objects.all()
+#       return render(request,"reg/index.html",{'cus':crd})
+
 
 # this function for update
 def userupdate(request,id):
