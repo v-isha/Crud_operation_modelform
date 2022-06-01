@@ -1,13 +1,11 @@
 from django.shortcuts import redirect, render 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect ,HttpResponse
 from .forms import customerregistration
 from .models import customer
+
 # Create your views here.
 def land(request):
     return render(request,"reg/land.html")
-
-
-
 
 # this function will save and show data
 def index(request):
@@ -21,17 +19,15 @@ def index(request):
          pss = cr.cleaned_data["password"]
          cus =customer(customer_id =id,name=nm,email=eml,password=pss)
          cus.save()
-         return HttpResponseRedirect('/index/')
+         cr=customerregistration()
+        #  return render(request,"reg/land.html")
+         
     else:
         
         cr=customerregistration()
         getdata = customer.objects.all()
-
-       
     return render(request,"reg/index.html",{'form':cr ,"cus":getdata})
-    # return render(request,"reg/index.html",{'form':cr,'cus':crd})
-
-
+    
 # data display
 # def showdata(request):
 #       crd = customer.objects.all()
