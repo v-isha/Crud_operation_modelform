@@ -11,6 +11,7 @@ def land(request):
 def index(request):
     
     if request.method =="POST":
+       getdata =customer.objects.all()
        cr=customerregistration(request.POST)
        if cr.is_valid():
          id = cr.cleaned_data["customer_id"]
@@ -19,9 +20,7 @@ def index(request):
          pss = cr.cleaned_data["password"]
          cus =customer(customer_id =id,name=nm,email=eml,password=pss)
          cus.save()
-         cr=customerregistration()
-        #  return render(request,"reg/land.html")
-         
+         return HttpResponseRedirect('/index/')
     else:
         
         cr=customerregistration()
